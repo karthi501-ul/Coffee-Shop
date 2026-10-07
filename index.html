@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Shop  </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #f4b400;
+      --primary-dark: #d99800;
+      --secondary: #0f172a;
+      --light: #f8fafc;
+      --muted: #64748b;
+      --card-bg: #ffffff;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #38618a 0%, #9b5164 100%);
+      color: var(--secondary);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .navbar {
+      background: rgba(0, 207, 244, 0.97);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .navbar-brand {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--secondary);
+    }
+
+    .nav-link {
+      font-weight: 600;
+      color: var(--secondary) !important;
+      margin-right: 0.8rem;
+    }
+
+    .nav-link:hover {
+      opacity: 0.8;
+    }
+
+    .hero-section {
+      padding: 2rem 0 1rem;
+    }
+
+    .carousel {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .carousel-item img {
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .carousel-caption {
+      background: rgba(15, 23, 42, 0.45);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      bottom: 2rem;
+    }
+
+    .section-heading {
+      text-align: center;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 800;
+      margin: 4rem 0 2.5rem;
+      color: var(--secondary);
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: none;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      height: 100%;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+    }
+
+    .product-card img {
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1.4rem 1.25rem 1.25rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 0.75rem;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .price {
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .btn-buy {
+      background: var(--primary);
+      border: none;
+      border-radius: 999px;
+      padding: 0.7rem 1.15rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .btn-buy:hover {
+      background: var(--primary-dark);
+      color: var(--secondary);
+    }
+
+    .feature-box {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 18px;
+      padding: 2rem 1.25rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+      height: 100%;
+    }
+
+    .feature-box h3 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+    }
+
+    .about-section {
+      padding-bottom: 3rem;
+    }
+
+    .about-section .content-box {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+    }
+
+    .about-section p {
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.8;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #dd4fc5 0%, #1e293b 100%);
+      color: #f8fafc;
+      padding: 3rem 0 1rem;
+      margin-top: 3rem;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-box {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .footer-box h3,
+    .footer-box h1 {
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .footer-box ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .footer-box li {
+      margin-bottom: 0.5rem;
+      color: #dbeafe;
+    }
+
+    .footer-box p {
+      margin-bottom: 0.75rem;
+      color: #dbeafe;
+    }
+
+    .copyright {
+      text-align: center;
+      color: #dbeafe;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-item img {
+        height: 350px;
+      }
+
+      .section-heading {
+        margin-top: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">Coffee Shop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link active" href="#">Home</a>
+          <a class="nav-link" href="#about">Our Shop</a>
+        
+          <a class="nav-link" href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero-section">
+      <div id="coffeCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#coffeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#coffeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#coffeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="c 1.webp" class="d-block w-100" alt="img">
+            
+         
+        </div>
+     
+      </div>
+    </section>
+
+<center>
+ <p style="color: white;">
+            Whether you're looking for a cozy place to take your crush on a date, a fun cafe to hang out with friends, or a quiet spot where you can get some work done, NearMeCoffee helps you find the right place nearby.
+          </p>
+</center>
+    <section id="products">
+      <div class="container">
+      
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <img src="cof 1.webp" alt="img">
+              <div class="card-body">
+               <h3 style="text-align: center;">Cappuccino</h3>
+                
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <img src="cof 2.webp" alt="IMG">
+              <div class="card-body">
+                <h3 style="text-align: center;">Caffe americano</h3>
+                
+               
+              </div>
+            </div>
+          </div>
+
+
+    <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <img src="cof 3.webp" alt="IMG">
+              <div class="card-body">
+                <h3 style="text-align: center;">Caffe Mocha</h3>
+               
+               
+              </div>
+            </div>
+          </div>
+
+    <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <img src="cf 4.webp" alt="IMG">
+              <div class="card-body">
+                <h3 style="text-align: center;">DARK FOREST</h3>
+                
+               
+              </div>
+            </div>
+          </div>
+
+
+    <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <img src="cof 5.webp" alt="IMG">
+              <div class="card-body">
+                <h3 style="text-align: center;">Black Coffee</h3>
+                
+               
+              </div>
+            </div>
+          </div>
+
+
+    <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <img src="cof 6.webp" alt="IMG">
+              <div class="card-body">
+                <h3 style="text-align: center;">Latte</h3>
+                
+               
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <img src="cof 7.webp" alt="IMG">
+              <div class="card-body">
+                <h3 style="text-align: center;">Lemon Tart</h3>
+                
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="product-card">
+              <img src="cof 8.webp" alt="IMG">
+              <div class="card-body">
+                <h3 style="text-align: center;">Chocolate Coffee</h3>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<br><br>
+    <section class="about-section" id="about">
+      <div class="container">
+        
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="feature-box">
+           
+              <p>Coffee Our community team and local coffee enthusiasts personally check seating, power socket counts, and Wi-Fi speeds.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-box">
+             
+              <p> We currently feature verified coffee spots across Pune, Mumbai, and Thane, with more locations added regularly.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-box">
+             
+              <p>Regular map apps only show if a place is open. We help you pick a spot based on who you're going with and what you actually want to do.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+ 
+
+
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Why use NearMeCoffee when I can find cafes on Google Maps or Zomato?
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Google Maps and Zomato focus on food reviews and directions. They will not tell you if a cafe has power sockets near your table, low noise for calls, or good seating for laptop work. NearMeCoffee shows you actual workspace details and atmosphere traits so you do not waste a trip.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Is NearMeCoffee free to use?
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">NearMeCoffee is free to use for basic features. Some advanced features may require a premium subscription.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Can I cancel my booking?
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Yes, you can cancel your booking up to 24 hours in advance without any charges. Cancellations made within 24 hours of the scheduled time may be subject to a cancellation fee.</div>
+    </div>
+  </div>
+</div><br>
+ <p style="text-align: center; color: white;">Why NearMeCoffee</p>
+
+
+ <h3 style="text-align: center ;  color: white;">
+Find a cafe for whatever you feel like doing</h3><br>
+
+
+
+ <p style="text-align: center ;  color: white;">Regular map apps only show if a place is open. We help you pick a spot based on who you're going with and what you actually want to do.</p>
+
+
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-box">
+          <h1 style="color: rgb(108, 177, 17);">Coffee Shop</h1>
+          <p> 
+            COFFEE FIND THE RIGHT COFFEE SPOT, WHEREVER YOU ARE.
+          </p>
+        </div>
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+          <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Products</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+
+<div class="footer-box">
+    <h3>Our Shop</h3>
+          <ul>
+            <li>Terms and Policy</li>
+            <li>Blogs</li>
+            <li>Privacy Policy</li>
+            <li>Services</li>
+          </ul>
+        </div>
+
+        <div class="footer-box">
+          <h3>Contact</h3>
+          <p>Coffeeshop@gmail.com</p>
+          <p>Mobile: 823 456 7890</p>
+          <p>Address: Tej Shoban Street, Villupuram, Tamil Nadu 629001</p>
+        </div>
+      </div>
+      <div class="copyright">© Coffee Shop. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
